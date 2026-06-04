@@ -7,8 +7,13 @@ import PauseHistory from "./PauseHistory";
 export default function ProgressTracker() {
   const [mounted, setMounted] = useState(false);
 
-  const [title, setTitle] = useState("DSA Practice");
-  const [targetHours, setTargetHours] = useState(5);
+  const [title, setTitle] = useState(" ");
+  // const [targetHours, setTargetHours] = useState(5);
+  const [days, setDays] = useState(0);
+const [hours, setHours] = useState(5);
+const [minutes, setMinutes] = useState(0);
+const [seconds, setSeconds] = useState(0);
+
   const [elapsed, setElapsed] = useState(0);
 
   const [isRunning, setIsRunning] = useState(false);
@@ -30,7 +35,10 @@ export default function ProgressTracker() {
       const data = JSON.parse(saved);
 
       setTitle(data.title || "Task Name");
-      setTargetHours(data.targetHours || 5);
+    setDays(data.days || 0);
+setHours(data.hours || 5);
+setMinutes(data.minutes || 0);
+setSeconds(data.seconds || 0);
       setElapsed(data.elapsed || 0);
       setPauseLogs(data.pauseLogs || []);
     } catch (err) {
@@ -46,12 +54,18 @@ export default function ProgressTracker() {
       "tracker",
       JSON.stringify({
         title,
-        targetHours,
+        days,
+hours,
+minutes,
+seconds,
         elapsed,
         pauseLogs,
       }),
     );
-  }, [mounted, title, targetHours, elapsed, pauseLogs]);
+  }, [mounted, title, days,
+hours,
+minutes,
+seconds,, elapsed, pauseLogs]);
 
   // Timer logic
   useEffect(() => {
@@ -67,6 +81,10 @@ export default function ProgressTracker() {
   }, [isRunning]);
 
   const startTimer = () => {
+    if (targetSeconds <= 0) {
+  alert("Please set a target time");
+  return;
+}
     setElapsed(0);
     setPauseLogs([]);
     setIsRunning(true);
@@ -89,7 +107,11 @@ export default function ProgressTracker() {
     localStorage.removeItem("tracker");
   };
 
-  const targetSeconds = targetHours * 60 * 60;
+ const targetSeconds =
+  days * 24 * 60 * 60 +
+  hours * 60 * 60 +
+  minutes * 60 +
+  seconds;
 
   const percentage = Math.min((elapsed / targetSeconds) * 100, 100);
 
@@ -102,6 +124,43 @@ export default function ProgressTracker() {
   };
 
   if (!mounted) return null;
+
+  const TimeControl = ({
+  label,
+  value,
+  setValue,
+}: {
+  label: string;
+  value: number;
+  setValue: React.Dispatch<React.SetStateAction<number>>;
+}) => (
+  <div className="flex flex-col items-center gap-2">
+    <button
+      onClick={() => setValue((prev) => prev + 1)}
+      className="w-10 h-10 rounded-full bg-white/10 text-white"
+    >
+      +
+    </button>
+
+    <input
+      type="number"
+      value={value}
+      onChange={(e) => setValue(Number(e.target.value))}
+      className="w-20 text-center bg-white/10 text-white rounded-lg p-2"
+    />
+
+    <button
+      onClick={() => setValue((prev) => Math.max(0, prev - 1))}
+      className="w-10 h-10 rounded-full bg-white/10 text-white"
+    >
+      -
+    </button>
+
+    <span className="text-slate-300 text-sm">
+      {label}
+    </span>
+  </div>
+);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#00152d] via-[#002147] to-[#0f3b72] p-8">
@@ -140,31 +199,31 @@ export default function ProgressTracker() {
 
               {/* Hours */}
 
-              <div className="mt-8 flex justify-center items-center gap-6">
-                <button
-                  onClick={() =>
-                    setTargetHours((prev) => Math.max(1, prev - 1))
-                  }
-                  className="h-12 w-12 rounded-full bg-white/10 text-white text-xl"
-                >
-                  −
-                </button>
+              <div className="mt-10 flex flex-wrap justify-center gap-8">
+  <TimeControl
+    label="Days"
+    value={days}
+    setValue={setDays}
+  />
 
-                <div className="text-center">
-                  <div className="text-white text-3xl font-bold">
-                    {targetHours}
-                  </div>
+  <TimeControl
+    label="Hours"
+    value={hours}
+    setValue={setHours}
+  />
 
-                  <div className="text-slate-300">Target Hours</div>
-                </div>
+  <TimeControl
+    label="Minutes"
+    value={minutes}
+    setValue={setMinutes}
+  />
 
-                <button
-                  onClick={() => setTargetHours((prev) => prev + 1)}
-                  className="h-12 w-12 rounded-full bg-white/10 text-white text-xl"
-                >
-                  +
-                </button>
-              </div>
+  <TimeControl
+    label="Seconds"
+    value={seconds}
+    setValue={setSeconds}
+  />
+</div>
 
               {/* Controls */}
 
@@ -221,7 +280,7 @@ export default function ProgressTracker() {
               <p className="text-slate-300 text-sm">Target Time</p>
 
               <h2 className="text-4xl font-bold text-white mt-2">
-                {targetHours}h
+                {days}d {hours}h {minutes}m {seconds}s
               </h2>
             </div>
 
