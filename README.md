@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Progress Tracker
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Progress Tracker is a modern productivity application built with Next.js that helps users track focused work sessions against a predefined time goal.
+
+Users can create a task, define a target duration, start a timer, pause and resume sessions, and visualize progress through an interactive circular timeline chart. The application also records pause history and displays session analytics in a clean dashboard interface.
+
+## Features
+
+### Task Management
+
+* Create and update task titles
+* Define a target duration in hours
+* Adjust goals dynamically while working
+
+### Session Tracking
+
+* Start work sessions
+* Pause and resume sessions
+* Real-time elapsed time tracking
+* Persistent session state using Local Storage
+
+### Progress Visualization
+
+* Interactive circular timeline chart
+* Visual representation of completed and remaining time
+* Dedicated chart segments for pause periods
+* Clean and responsive dashboard layout
+
+### Analytics
+
+* Progress percentage
+* Target time overview
+* Pause count tracking
+* Pause history log with timestamps
+
+### User Experience
+
+* Responsive design
+* Glassmorphism-inspired interface
+* Custom productivity dashboard
+* Modern blue-themed design system
+
+## Tech Stack
+
+### Frontend
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+
+### Visualization
+
+* Recharts
+
+### Storage
+
+* Browser Local Storage
+
+## Project Structure
+
+```text
+app/
+├── page.tsx
+
+components/
+├── ProgressTracker.tsx
+├── CircularTimer.tsx
+├── PauseHistory.tsx
+```
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+```
+
+Navigate to the project:
+
+```bash
+cd progress-tracker
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
 
-## Learn More
+1. Enter a task name.
+2. Set a target number of hours.
+3. Start a session.
+4. Pause and resume whenever needed.
+5. Monitor progress through the circular timeline visualization.
+6. Review pause history and session statistics.
 
-To learn more about Next.js, take a look at the following resources:
+## Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Multiple task management
+* Daily and weekly analytics
+* Focus score calculation
+* Session categories and tags
+* Data export functionality
+* Cloud synchronization
+* User authentication
+* Team productivity tracking
+* Dark and light themes
+* Historical performance reports
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Learning Objectives
 
-## Deploy on Vercel
+This project demonstrates:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* React Hooks
+* State Management
+* TypeScript Interfaces
+* Component Architecture
+* Data Visualization
+* Local Storage Persistence
+* Responsive UI Design
+* Dashboard Development
+* Modern Next.js Development Practices
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is available for educational and personal use.
