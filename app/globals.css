@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #002147;
+  --secondary-color: #4080c9e1;
+  --accent-color: #155fb3e1;
+
+  --background:rgba(255,255,255,0.06) ;
+
+
+  --border-radius: 12px;
+
+  --navbar-height: 70px;
+}
+
+.btn{
+  background-color: #002147;
+  color:#f3b5cb;
+  padding:2rem;
+border-radius: 15px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
