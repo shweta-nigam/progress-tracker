@@ -153,134 +153,291 @@ export default function ProgressTracker() {
     </div>
   );
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#00152d] via-[#002147] to-[#0f3b72] p-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-10">
-          <h1 className="text-5xl font-bold text-white">Progress Tracker</h1>
+  // return (
+  //   <div className="min-h-screen bg-gradient-to-br from-[#00152d] via-[#002147] to-[#0f3b72] p-8">
+  //     <div className="max-w-6xl mx-auto">
+  //       {/* Header */}
+  //       <div className="mb-10">
+  //         <h1 className="text-5xl font-bold text-white">Progress Tracker</h1>
 
-          <p className="text-slate-300 mt-2">
-            Track your focused work sessions
-          </p>
-        </div>
+  //         <p className="text-slate-300 mt-2">
+  //           Track your focused work sessions
+  //         </p>
+  //       </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left */}
-          <div className="lg:col-span-2">
-            <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Task Name"
-                className="w-full p-4 rounded-2xl bg-white/10 border border-white/10 text-white outline-none"
+  //       <div className="grid lg:grid-cols-3 gap-8">
+  //         {/* Left */}
+  //         <div className="lg:col-span-2">
+  //           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+  //             <input
+  //               value={title}
+  //               onChange={(e) => setTitle(e.target.value)}
+  //               placeholder="Task Name"
+  //               className="w-full p-4 rounded-2xl bg-white/10 border border-white/10 text-white outline-none"
+  //             />
+
+  //             <div className="mt-10 flex justify-center">
+  //               <CircularTimer percentage={percentage} />
+  //             </div>
+
+  //             <div className="text-center mt-8">
+  //               <h2 className="text-4xl font-bold text-white">
+  //                 {formatTime(elapsed)}
+  //               </h2>
+
+  //               <p className="text-slate-300 mt-2">Elapsed Time</p>
+  //             </div>
+
+  //             {/* Hours */}
+
+  //             <div className="mt-10 flex flex-wrap justify-center gap-8">
+  //               <TimeControl label="Days" value={days} setValue={setDays} />
+
+  //               <TimeControl label="Hours" value={hours} setValue={setHours} />
+
+  //               <TimeControl
+  //                 label="Minutes"
+  //                 value={minutes}
+  //                 setValue={setMinutes}
+  //               />
+
+  //               <TimeControl
+  //                 label="Seconds"
+  //                 value={seconds}
+  //                 setValue={setSeconds}
+  //               />
+  //             </div>
+
+  //             {/* Controls */}
+
+  //             <div className="flex flex-wrap justify-center gap-4 mt-10">
+  //               {!isRunning && elapsed === 0 && (
+  //                 <button
+  //                   onClick={startTimer}
+  //                   className="px-8 py-4 rounded-2xl bg-green-600 text-white font-semibold"
+  //                 >
+  //                   Start Session
+  //                 </button>
+  //               )}
+
+  //               {isRunning && (
+  //                 <button
+  //                   onClick={pauseTimer}
+  //                   className="px-8 py-4 rounded-2xl bg-red-500 text-white font-semibold"
+  //                 >
+  //                   Pause
+  //                 </button>
+  //               )}
+
+  //               {!isRunning && elapsed > 0 && (
+  //                 <button
+  //                   onClick={resumeTimer}
+  //                   className="px-8 py-4 rounded-2xl bg-blue-600 text-white font-semibold"
+  //                 >
+  //                   Resume
+  //                 </button>
+  //               )}
+
+  //               <button
+  //                 onClick={resetTimer}
+  //                 className="px-8 py-4 rounded-2xl bg-white/10 text-white font-semibold"
+  //               >
+  //                 Reset
+  //               </button>
+  //             </div>
+  //           </div>
+  //         </div>
+
+  //         {/* Right */}
+
+  //         <div className="space-y-6">
+  //           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
+  //             <p className="text-slate-300 text-sm">Progress</p>
+
+  //             <h2 className="text-4xl font-bold text-white mt-2">
+  //               {Math.floor(percentage)}%
+  //             </h2>
+  //           </div>
+
+  //           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
+  //             <p className="text-slate-300 text-sm">Target Time</p>
+
+  //             <h2 className="text-4xl font-bold text-white mt-2">
+  //               {days}d {hours}h {minutes}m {seconds}s
+  //             </h2>
+  //           </div>
+
+  //           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
+  //             <p className="text-slate-300 text-sm">Pause Count</p>
+
+  //             <h2 className="text-4xl font-bold text-white mt-2">
+  //               {pauseLogs.length}
+  //             </h2>
+  //           </div>
+
+  //           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
+  //             <PauseHistory logs={pauseLogs} />
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+return (
+  <div className="min-h-screen bg-gradient-to-br from-[#00152d] via-[#002147] to-[#0f3b72] p-4 sm:p-6 lg:p-8">
+    <div className="max-w-6xl mx-auto">
+      {/* Header */}
+
+      <div className="mb-6 sm:mb-10">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          Progress Tracker
+        </h1>
+
+        <p className="text-slate-300 mt-2 text-sm sm:text-base">
+          Track your focused work sessions
+        </p>
+      </div>
+
+      {/* Layout */}
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Main Card */}
+
+        <div className="lg:col-span-2">
+          <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl">
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Task Name"
+              className="w-full p-3 sm:p-4 rounded-2xl bg-white/10 border border-white/10 text-white outline-none text-sm sm:text-base"
+            />
+
+            {/* Timer */}
+
+            <div className="mt-6 sm:mt-10 flex justify-center overflow-hidden">
+              <CircularTimer percentage={percentage} />
+            </div>
+
+            {/* Elapsed */}
+
+            <div className="text-center mt-6 sm:mt-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white break-words">
+                {formatTime(elapsed)}
+              </h2>
+
+              <p className="text-slate-300 mt-2 text-sm sm:text-base">
+                Elapsed Time
+              </p>
+            </div>
+
+            {/* Time Controls */}
+
+            <div className="mt-8 sm:mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+              <TimeControl
+                label="Days"
+                value={days}
+                setValue={setDays}
               />
 
-              <div className="mt-10 flex justify-center">
-                <CircularTimer percentage={percentage} />
-              </div>
+              <TimeControl
+                label="Hours"
+                value={hours}
+                setValue={setHours}
+              />
 
-              <div className="text-center mt-8">
-                <h2 className="text-4xl font-bold text-white">
-                  {formatTime(elapsed)}
-                </h2>
+              <TimeControl
+                label="Minutes"
+                value={minutes}
+                setValue={setMinutes}
+              />
 
-                <p className="text-slate-300 mt-2">Elapsed Time</p>
-              </div>
+              <TimeControl
+                label="Seconds"
+                value={seconds}
+                setValue={setSeconds}
+              />
+            </div>
 
-              {/* Hours */}
+            {/* Controls */}
 
-              <div className="mt-10 flex flex-wrap justify-center gap-8">
-                <TimeControl label="Days" value={days} setValue={setDays} />
-
-                <TimeControl label="Hours" value={hours} setValue={setHours} />
-
-                <TimeControl
-                  label="Minutes"
-                  value={minutes}
-                  setValue={setMinutes}
-                />
-
-                <TimeControl
-                  label="Seconds"
-                  value={seconds}
-                  setValue={setSeconds}
-                />
-              </div>
-
-              {/* Controls */}
-
-              <div className="flex flex-wrap justify-center gap-4 mt-10">
-                {!isRunning && elapsed === 0 && (
-                  <button
-                    onClick={startTimer}
-                    className="px-8 py-4 rounded-2xl bg-green-600 text-white font-semibold"
-                  >
-                    Start Session
-                  </button>
-                )}
-
-                {isRunning && (
-                  <button
-                    onClick={pauseTimer}
-                    className="px-8 py-4 rounded-2xl bg-red-500 text-white font-semibold"
-                  >
-                    Pause
-                  </button>
-                )}
-
-                {!isRunning && elapsed > 0 && (
-                  <button
-                    onClick={resumeTimer}
-                    className="px-8 py-4 rounded-2xl bg-blue-600 text-white font-semibold"
-                  >
-                    Resume
-                  </button>
-                )}
-
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
+              {!isRunning && elapsed === 0 && (
                 <button
-                  onClick={resetTimer}
-                  className="px-8 py-4 rounded-2xl bg-white/10 text-white font-semibold"
+                  onClick={startTimer}
+                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-[--primary-color] text-white font-semibold bg-border-white-400"
                 >
-                  Reset
+                  Start Session
                 </button>
-              </div>
+              )}
+
+              {isRunning && (
+                <button
+                  onClick={pauseTimer}
+                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-red-500 text-white font-semibold"
+                >
+                  Pause
+                </button>
+              )}
+
+              {!isRunning && elapsed > 0 && (
+                <button
+                  onClick={resumeTimer}
+                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-blue-600 text-white font-semibold"
+                >
+                  Resume
+                </button>
+              )}
+
+              <button
+                onClick={resetTimer}
+                className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-white/10 text-white font-semibold"
+              >
+                Reset
+              </button>
             </div>
           </div>
+        </div>
 
-          {/* Right */}
+        {/* Stats */}
 
-          <div className="space-y-6">
-            <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
-              <p className="text-slate-300 text-sm">Progress</p>
+        <div className="space-y-4 sm:space-y-6">
+          <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6">
+            <p className="text-slate-300 text-sm">
+              Progress
+            </p>
 
-              <h2 className="text-4xl font-bold text-white mt-2">
-                {Math.floor(percentage)}%
-              </h2>
-            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2">
+              {Math.floor(percentage)}%
+            </h2>
+          </div>
 
-            <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
-              <p className="text-slate-300 text-sm">Target Time</p>
+          <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6">
+            <p className="text-slate-300 text-sm">
+              Target Time
+            </p>
 
-              <h2 className="text-4xl font-bold text-white mt-2">
-                {days}d {hours}h {minutes}m {seconds}s
-              </h2>
-            </div>
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mt-2 break-words">
+              {days}d {hours}h {minutes}m {seconds}s
+            </h2>
+          </div>
 
-            <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
-              <p className="text-slate-300 text-sm">Pause Count</p>
+          <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6">
+            <p className="text-slate-300 text-sm">
+              Pause Count
+            </p>
 
-              <h2 className="text-4xl font-bold text-white mt-2">
-                {pauseLogs.length}
-              </h2>
-            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2">
+              {pauseLogs.length}
+            </h2>
+          </div>
 
-            <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
-              <PauseHistory logs={pauseLogs} />
-            </div>
+          <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6">
+            <PauseHistory logs={pauseLogs} />
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
